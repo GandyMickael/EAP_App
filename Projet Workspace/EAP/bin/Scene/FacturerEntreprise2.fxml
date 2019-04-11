@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="458.0" prefWidth="424.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="org.o7planning.javafx.MyController">
+   <children>
+      <Text id="idEAPText" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EAP" wrappingWidth="31.13671875" />
+      <Text id="idFacturerEntreprise" layoutX="19.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Facturer une entreprise" wrappingWidth="185.13671875" />
+      <ListView id="idListeEntreprises" layoutX="23.0" layoutY="89.0" prefHeight="129.0" prefWidth="335.0" />
+      <TextArea id="idFacturegeneree" layoutX="19.0" layoutY="229.0" prefHeight="173.0" prefWidth="335.0" promptText="Facture générée" />
+      <Button id="idConfirmerBouton" layoutX="345.0" layoutY="419.0" mnemonicParsing="false" text="Confirmer" />
+   </children>
+</AnchorPane>

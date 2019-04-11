@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="453.0" prefWidth="453.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="org.o7planning.javafx.MyController">
+   <children>
+      <Text id="idTextEntrepriseClient" layoutX="27.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Entreprise Cliente" wrappingWidth="91.0" />
+      <Button id="idConfirmerBouton" layoutX="370.0" layoutY="404.0" mnemonicParsing="false" text="Confirmer" />
+      <TextField id="idDateBouton1" layoutX="86.0" layoutY="109.0" prefHeight="25.0" prefWidth="91.0" promptText="JJ/MM/AAAA" />
+      <TextField id="idDateBouton2" layoutX="296.0" layoutY="109.0" prefHeight="25.0" prefWidth="91.0" promptText="JJ/MM/AAAA" />
+      <Text id="idDuText" layoutX="33.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Du" />
+      <Text id="idAuText" layoutX="236.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Au" />
+      <ListView id="idListeBureaux" layoutX="49.0" layoutY="161.0" prefHeight="200.0" prefWidth="356.0" />
+      <Text id="idRéserverSalledeReunionTexte" layoutX="27.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Réserver une salle de reunion" wrappingWidth="199.13671875" />
+   </children>
+</AnchorPane>

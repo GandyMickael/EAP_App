@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar fx:id="barreAdmin" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
+         <menus>
+            <Menu fx:id="ajoutAdmin" mnemonicParsing="false" text="Réserver une Salle">
+               <items>
+                  <MenuItem fx:id="ajoutCharge" mnemonicParsing="false" onAction="#changeToAjoutCharge" text="Rechercher une salle disponible" />
+               </items>
+            </Menu>
+            <Menu fx:id="suppAdmin" mnemonicParsing="false" text="Gérer les Réservations">
+               <items>
+                  <MenuItem fx:id="suppTarif" mnemonicParsing="false" onAction="#changeToSuppTarif" text="Voir mes réservations" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Facturation">
+               <items>
+                  <MenuItem fx:id="modifMatiere" mnemonicParsing="false" onAction="#changeToModifMatiere" text="Voir ma facture actuelle" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Déconnexion">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Déconnecté" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Quitter">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Close" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Text layoutX="192.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue dans la partie Client" wrappingWidth="215.13671875" />
+      <Text layoutX="30.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ici vous pourrez :" />
+      <Text layoutX="130.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Rechercher et faire de nouvelles réservations" />
+      <Text layoutX="130.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Voir vos réservations" />
+      <Text layoutX="130.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Annuler vos réservations" />
+      <Text layoutX="130.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Voir la facture de vos réservations" wrappingWidth="256.01953125" />
+      <Text layoutX="130.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Payer votre facture" />
+   </children>
+</AnchorPane>

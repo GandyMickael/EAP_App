@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar fx:id="barreAdmin" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
+         <menus>
+            <Menu fx:id="ajoutAdmin" mnemonicParsing="false" text="Ajouter">
+               <items>
+                  <MenuItem fx:id="ajoutCharge" mnemonicParsing="false" onAction="#changeToAjoutCharge" text="Ajouter une Salle" />
+                  <MenuItem fx:id="ajoutEnseignant" mnemonicParsing="false" onAction="#changeToAjoutEnseignant" text="Ajouter un Client" />
+               </items>
+            </Menu>
+            <Menu fx:id="suppAdmin" mnemonicParsing="false" text="Supprimer">
+               <items>
+                  <MenuItem fx:id="suppTarif" mnemonicParsing="false" onAction="#changeToSuppTarif" text="Supprimer une Salle" />
+                  <MenuItem fx:id="suppEnseignant" mnemonicParsing="false" onAction="#changeToSuppEnseignant" text="Supprimer un Client" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Modification">
+               <items>
+                  <MenuItem fx:id="modifMatiere" mnemonicParsing="false" onAction="#changeToModifMatiere" text="Modifier l'état d'une Salle" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Déconnexion">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Déconnecté" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Quitter">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Close" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Text layoutX="192.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenue dans la partie Administration" wrappingWidth="215.13671875" />
+      <Text layoutX="30.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ici vous pourrez :" />
+      <Text layoutX="130.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Ajouter une Salle / un Client" />
+      <Text layoutX="130.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Supprimer une Salle / un Client" />
+      <Text layoutX="130.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Modifier l'état d'une Salle" />
+      <Text layoutX="130.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Suivre les statistique des Salles / Clients" wrappingWidth="217.01953125" />
+   </children>
+</AnchorPane>

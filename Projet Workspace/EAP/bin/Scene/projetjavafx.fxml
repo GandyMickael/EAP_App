@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="490.0" prefWidth="455.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="org.o7planning.javafx.MyController">
+   <children>
+      <Text id="idEAPText" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EAP" />
+      <Text id="idSuivreText" layoutX="14.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suivre statistiquement un local" wrappingWidth="185.13671875" />
+      <ListView id="idListeLocaux" layoutX="14.0" layoutY="80.0" prefHeight="113.0" prefWidth="421.0" />
+      <TextArea id="idInformationsrelatives" layoutX="14.0" layoutY="209.0" prefHeight="200.0" prefWidth="421.0" promptText="Informations relatives au local sélectionné" />
+      <Button id="idConfirmerbouton" layoutX="371.0" layoutY="443.0" mnemonicParsing="false" text="confirmer" />
+   </children>
+</AnchorPane>

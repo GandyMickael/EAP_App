@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="531.0" prefWidth="417.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="org.o7planning.javafx.MyController">
+   <children>
+      <Text id="idEAP" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EAP" wrappingWidth="30.53125" />
+      <Text id="idSuivreText" layoutX="14.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suivre statistiquement Client" wrappingWidth="159.13671875" />
+      <ListView id="idListeClient" layoutX="14.0" layoutY="78.0" prefHeight="102.0" prefWidth="381.0" />
+      <TextArea id="idStatsclientselectionné" layoutX="14.0" layoutY="193.0" prefHeight="200.0" prefWidth="381.0" promptText="Stats du client selectionné" />
+      <Button id="idConfirmerbouton" layoutX="322.0" layoutY="472.0" mnemonicParsing="false" text="confirmer" />
+   </children>
+</AnchorPane>

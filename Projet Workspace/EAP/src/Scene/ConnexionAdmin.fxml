@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="292.0" prefWidth="338.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.o7planning.javafx.MyController">
+   <children>
+      <Button id="idbuttonconfirmer" layoutX="106.0" layoutY="203.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="127.0" text="Connexion" />
+      <TextField id="idFieldPassword" layoutX="106.0" layoutY="153.0" prefHeight="25.0" prefWidth="164.0" />
+      <Text id="idAreaPassword" layoutX="35.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="90.13671875" />
+      <TextField id="idFieldLogin" layoutX="106.0" layoutY="118.0" prefHeight="25.0" prefWidth="164.0" />
+      <Text id="idAreaLogin" layoutX="35.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" />
+      <Text id="idAreaAuthentification" layoutX="73.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Authentification administrateur" wrappingWidth="192.0" />
+      <Label layoutX="66.0" layoutY="246.0" prefHeight="17.0" prefWidth="225.0" />
+      <Button layoutX="226.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Client" />
+   </children>
+</AnchorPane>

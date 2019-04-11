@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="idEntrepriseClienteText" prefHeight="497.0" prefWidth="450.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="org.o7planning.javafx.MyController">
+   <children>
+      <Text id="idEntrepriseClienteText" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Entreprise Cliente" wrappingWidth="126.13671875" />
+      <Text id="idReserverBureauText" layoutX="18.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Réserver un bureau" wrappingWidth="117.13671875" />
+      <Text id="idDuText" layoutX="51.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Du" wrappingWidth="25.13671875" />
+      <TextField id="idDateBouton1" layoutX="96.0" layoutY="119.0" prefHeight="25.0" prefWidth="89.0" promptText="JJ/MM/AAAA" />
+      <Text id="idAuText" layoutX="202.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Au" />
+      <TextField id="idDateBouton2" layoutX="243.0" layoutY="119.0" prefHeight="25.0" prefWidth="89.0" promptText="JJ/MM/AAAA" />
+      <ListView id="idListeBureaux" layoutX="51.0" layoutY="179.0" prefHeight="244.0" prefWidth="361.0" />
+      <Button id="idConfirmerBouton" layoutX="360.0" layoutY="458.0" mnemonicParsing="false" text="Confirmer" />
+   </children>
+</AnchorPane>

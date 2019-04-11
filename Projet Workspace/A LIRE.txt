@@ -1,0 +1,3 @@
+Ceci est le dossier contenant le projet tel qu'il était dans le workspace.
+Il suffit de le copier dans le votre puis de créer un "New Java Projet" avec le même nom (EAP).
+Si vous êtes sur Eclipse, tout le code sera récupéré, executable, et modifiable.
