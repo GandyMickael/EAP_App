@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="231.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supprimer un Client" />
+      <Text layoutX="154.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez un Client :" wrappingWidth="119.13671875" />
+      <ComboBox layoutX="284.0" layoutY="107.0" prefWidth="150.0" />
+      <Button layoutX="230.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Supprimer le client" />
+      <MenuBar fx:id="barreAdmin" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Retour">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#retour" text="Return" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Déconnexion">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#disconnect" text="Déconnecté" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Quitter">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Close" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>

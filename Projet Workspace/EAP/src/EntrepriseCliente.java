@@ -1,13 +1,38 @@
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
+@Entity
+@Table(name="entreprisecliente")
 public class EntrepriseCliente {
+	@Id
+	@Column(name="idEntrepriseCliente")
 	private int id;
+	
+	@Column(name="nom")
 	private String nom;
+	
+	@Column(name="adresse")
 	private String adresse;
+	
+	@Column(name="numtel")
 	private int numTel;
+	
+	@Column(name="adressemail")
 	private String adresseMail;
+	
+	@Column(name="nbLocationsEffectuee")
+	private int nbLocations;
+	
+	@Transient
 	ArrayList<Location> lesLocations;
+	
+	public EntrepriseCliente(){
+	}
 	
 	public EntrepriseCliente(int unID, String unNom, String uneAdresse, int unNumTel, String uneAdresseMail){
 		this.id = unID;
@@ -16,6 +41,7 @@ public class EntrepriseCliente {
 		this.numTel = unNumTel;
 		this.adresseMail = uneAdresseMail;
 		this.lesLocations =  new ArrayList<Location>();
+		this.nbLocations = 0;
 	}
 	
 	
@@ -27,8 +53,17 @@ public class EntrepriseCliente {
 		this.numTel = unNumTel;
 		this.adresseMail = uneAdresseMail;
 		this.lesLocations = desLocations;
+		this.nbLocations = 0;
 	}
 
+
+	public void setNbLocations(int nbLocations) {
+		this.nbLocations = nbLocations;
+	}
+	
+	public int getNbLocations() {
+		return this.nbLocations;
+	}
 
 	public int getId() {
 		return id;
@@ -88,9 +123,4 @@ public class EntrepriseCliente {
 	public void setLesLocations(ArrayList<Location> lesLocations) {
 		this.lesLocations = lesLocations;
 	}
-	
-	public int getNbLocations(){
-		return this.lesLocations.size();
-	}
-
 }

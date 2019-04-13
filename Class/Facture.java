@@ -1,27 +1,53 @@
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name="facture")
 public class Facture {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="idFacture")
 	private int numFacture;
+	
+	@Column(name="prix")
 	private float prix;
-	private ArrayList<Salle> LesSallesLoues;
+	
+	@Transient
+	private ArrayList<Location> lesLocations;
+	
+	@Column(name="etat")
 	private String etat;
+	
+	@Column(name="idEntrepriseCliente")
+	private int idClt;
 
-	public Facture(int unNumFacture, float unPrix, int unNumBureauxLoue, int unNumSalleDRLoue, int unNbHeureSalleDRLoue) {
-		this.numFacture = unNumFacture;
-		this.prix = unPrix;
-		this.LesSallesLoues = new ArrayList<Salle>();
-		this.etat="En attente de paiement";
-		
+	public Facture(){
 	}
 	
-	public Facture(int unNumFacture, float unPrix, int unNumBureauxLoue, int unNumSalleDRLoue, int unNbHeureSalleDRLoue, 
-			ArrayList<Location> lesLocations) {
-		this.numFacture = unNumFacture;
-		this.prix = unPrix;
-		for(int i=0; i<lesLocations.size();i++){
-			LesSallesLoues.add(lesLocations.get(i).getLaSalle());
-		}
+	public Facture(int idEnt) {
+		this.lesLocations = new ArrayList<Location>();
+		this.etat="En attente de paiement";
+		this.idClt=idEnt;
+		this.calcul_Prix();
+		
+	}
+
+	public Facture(ArrayList<Location> lesLocations, int idEnt) {
+		this.lesLocations=lesLocations;
+		this.etat="En attente de paiement";
+		this.idClt=idEnt;
+		this.calcul_Prix();
 	}
 
 
@@ -40,29 +66,31 @@ public class Facture {
 	}
 
 
-	public void setPrix(float prix) {
+	private void setPrix(float prix) {
 		this.prix = prix;
 	}
 
-	public ArrayList<Salle> getSallesLoue() {
-		return LesSallesLoues;
+	public ArrayList<Location> getlesLocations() {
+		return lesLocations;
 	}
 
 
-	public void setSallesLoue(ArrayList<Salle> lesSalles) {
-		this.LesSallesLoues = lesSalles;
+	public void setlesLocations(ArrayList<Location> lesLoc) {
+		this.lesLocations = lesLoc;
 	}
 
-	public void addSalle(Salle salle){
-		this.LesSallesLoues.add(salle);
+	public void addLocation(Location uneLocation){
+		this.lesLocations.add(uneLocation);
+		this.calcul_Prix();
 	}
 	
-	public void removeSalle(Salle salle){
-		this.LesSallesLoues.remove(salle);
+	public void removeLocation(Location uneLocation){
+		this.lesLocations.remove(uneLocation);
+		this.calcul_Prix();
 	}
 	
-	public boolean rechercheSalle(Salle salle){
-		return this.LesSallesLoues.contains(salle);
+	public boolean rechercheLocation(Location uneLocation){
+		return this.lesLocations.contains(uneLocation);
 	}
 	
 	public String getEtat() {
@@ -71,6 +99,41 @@ public class Facture {
 
 	public void setEtat(String etat) {
 		this.etat = etat;
+	}
+	
+	public void calcul_Prix(){
+		float prix = 0;
+		int cptB=0;
+		int cptS=0;
+		if(!this.lesLocations.isEmpty()){
+			for(int i=0;i<this.lesLocations.size();i++){
+				Location laLocation=this.lesLocations.get(i);
+				String dateDebutS = laLocation.getDateDebut();
+				String dateFinS = laLocation.getDateFin();
+				
+				DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+				LocalDate date1 = LocalDate.parse(dateDebutS, format);
+				LocalDate date2 = LocalDate.parse(dateFinS, format);
+				Period period = Period.between(date1, date2);
+				Salle laSalle=Modele.getSalle(laLocation.getIdSalle());
+				if(laSalle.getNom().contains("Bureau")){
+					cptB=cptB+1;
+					prix=prix+10*period.getDays();
+					System.out.println("Bureau "+ prix);
+				}
+				else{
+					cptS=cptS+1;
+					prix=prix+20*period.getDays();
+					System.out.println("SalleR "+ prix);
+				}
+			}
+		}
+		else{
+			System.out.println("Pas de Locations");
+		}
+		System.out.println(prix+" "+cptB+" "+cptS);
+		this.prix=prix;
+		
 	}
 	
 }
