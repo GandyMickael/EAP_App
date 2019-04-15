@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur">
    <children>
-      <Text layoutX="246.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter une salle" wrappingWidth="107.13671875" />
-      <Text layoutX="162.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de la Salle :" />
-      <TextField layoutX="279.0" layoutY="91.0" />
-      <ComboBox layoutX="278.0" layoutY="142.0" prefWidth="150.0" />
-      <Text layoutX="163.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type de la Salle :" />
-      <Button layoutX="229.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Ajouter la Salle" />
+      <Text layoutX="225.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supprimer une Salle" />
+      <Text layoutX="154.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez une Salle :" wrappingWidth="119.13671875" />
+      <ComboBox fx:id="boxSalles" layoutX="278.0" layoutY="107.0" prefWidth="150.0" />
+      <Button fx:id="btnSuppSalle" layoutX="209.0" layoutY="175.0" mnemonicParsing="false" onAction="#suppSalle" prefHeight="25.0" prefWidth="139.0" text="Supprimer la Salle" />
       <MenuBar fx:id="barreAdmin" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
          <menus>
             <Menu mnemonicParsing="false" text="Retour">

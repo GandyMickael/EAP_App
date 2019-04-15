@@ -5,8 +5,54 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import javafx.util.Callback;
+
 
 public class Modele {
+	
+	public static boolean logIn(String login, String mdp, String valeur){
+		boolean connected=false;
+		if(valeur=="administrateur"){
+			System.out.println("Connexion admin en cours ");
+			if(login.equals("admin")&&mdp.equals("admin")){
+				connected=true;
+			}
+		}
+		else{
+			System.out.println("Connexion Client en cours");
+			EntrepriseCliente uneEnt = getClient(login,mdp);
+			if(uneEnt.getNom().equals(login)){
+				connected=true;
+			}
+		}
+		return connected;
+	}
+	
+	public static EntrepriseCliente getClient(String login, String mdp){
+		SessionFactory factory = new Configuration()
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(EntrepriseCliente.class)
+				.buildSessionFactory();
+		Session session = factory.getCurrentSession();
+		EntrepriseCliente uneEnt=null;
+		try{
+			//start a transaction
+			session.beginTransaction();
+			uneEnt = (EntrepriseCliente) session.createQuery("from EntrepriseCliente where nom ='"+login+"' AND mdp ='"+mdp+"'").getSingleResult();
+			//commit les transactions
+			session.getTransaction().commit();
+			if(uneEnt==null){
+				System.out.println("Get Client Null");
+			}
+			else{
+				System.out.println("Success GET Client");
+			}
+		}
+		finally{
+			factory.close();
+		}
+		return uneEnt;
+	}
 	
 	public static ArrayList<Salle> getAllSalle(){
 		
@@ -46,6 +92,109 @@ public class Modele {
 		}
 		return lesSalles;
 	}
+	
+	public static ArrayList<Bureaux> getAllBureauDispo() {
+		// TODO Auto-generated method stub
+		//create session factory
+		SessionFactory factory = new Configuration()
+								.configure("hibernate.cfg.xml")
+								.addAnnotatedClass(Bureaux.class)
+								.buildSessionFactory();
+		//create session
+		Session session = factory.getCurrentSession();
+		ArrayList<Bureaux> lesBureaux = null;
+		try {
+			//start a transaction
+			session.beginTransaction();
+			
+			//query students
+			lesBureaux = (ArrayList<Bureaux>) session.createQuery("from Salle where nom LIKE 'Bureau%' AND etat='Libre'").getResultList();
+			session.getTransaction().commit();
+		}
+		finally{
+			factory.close();
+		}
+		return lesBureaux;
+	
+	}
+	
+	public static int getIdEnt(String nomEnt) {
+		// TODO Auto-generated method stub
+		//create session factory
+		SessionFactory factory = new Configuration()
+								.configure("hibernate.cfg.xml")
+								.addAnnotatedClass(EntrepriseCliente.class)
+								.buildSessionFactory();
+		//create session
+		Session session = factory.getCurrentSession();
+		EntrepriseCliente uneEnt = null;
+		try {
+			//start a transaction
+			session.beginTransaction();
+			
+			//query students
+			uneEnt = (EntrepriseCliente) session.createQuery("from EntrepriseCliente where nom ='"+nomEnt+"'").getSingleResult();
+			session.getTransaction().commit();
+		}
+		finally{
+			factory.close();
+		}
+		return uneEnt.getId();
+	
+	}
+	
+	public static int getIdSalle(String nomSalle) {
+		// TODO Auto-generated method stub
+		//create session factory
+		SessionFactory factory = new Configuration()
+								.configure("hibernate.cfg.xml")
+								.addAnnotatedClass(Salle.class)
+								.buildSessionFactory();
+		//create session
+		Session session = factory.getCurrentSession();
+		Salle uneSalle = null;
+		try {
+			//start a transaction
+			session.beginTransaction();
+			
+			//query students
+			uneSalle = (Salle) session.createQuery("from Salle where nom ='"+nomSalle+"'").getSingleResult();
+			session.getTransaction().commit();
+		}
+		finally{
+			factory.close();
+		}
+		return uneSalle.getId();
+	
+	}
+
+
+	
+	public static ArrayList<Salle_de_reunion> getAllSalleRDispo() {
+		// TODO Auto-generated method stub
+		//create session factory
+		SessionFactory factory = new Configuration()
+								.configure("hibernate.cfg.xml")
+								.addAnnotatedClass(Salle_de_reunion.class)
+								.buildSessionFactory();
+		//create session
+		Session session = factory.getCurrentSession();
+		ArrayList<Salle_de_reunion> lesSalleR = null;
+		try {
+			//start a transaction
+			session.beginTransaction();
+			
+			//query students
+			lesSalleR = (ArrayList<Salle_de_reunion>) session.createQuery("from Salle where nom LIKE 'Salle%' AND etat='Libre'").getResultList();
+			session.getTransaction().commit();
+		}
+		finally{
+			factory.close();
+		}
+		return lesSalleR;
+	
+	}
+
 	
 	public static ArrayList<EntrepriseCliente> getAllClt(){
 		//create session factory
@@ -390,5 +539,7 @@ public class Modele {
 			factory.close();
 		}
 	}
+
+	
 	
 }

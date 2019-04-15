@@ -5,13 +5,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur">
    <children>
       <Text layoutX="208.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier le statut d'une Salle" />
-      <Text layoutX="127.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez un Client :" wrappingWidth="119.13671875" />
-      <ComboBox layoutX="264.0" layoutY="107.0" prefWidth="150.0" />
-      <Button layoutX="214.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Modifier la Salle" />
-      <ComboBox layoutX="264.0" layoutY="145.0" prefWidth="150.0" />
+      <Text layoutX="127.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez une Salle :" wrappingWidth="119.13671875" />
+      <ComboBox fx:id="boxSalles" layoutX="264.0" layoutY="107.0" prefWidth="150.0" />
+      <Button fx:id="btnModifSalle" layoutX="214.0" layoutY="200.0" mnemonicParsing="false" onAction="#updateSalle" prefHeight="25.0" prefWidth="139.0" text="Modifier la Salle" />
+      <ComboBox fx:id="boxetatSalle" layoutX="264.0" layoutY="145.0" prefWidth="150.0" />
       <Text layoutX="127.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nouvel état de la Salle :" wrappingWidth="126.13671875" />
       <MenuBar fx:id="barreAdmin" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
          <menus>

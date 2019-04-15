@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="458.0" prefWidth="424.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur">
    <children>
-      <Text layoutX="225.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supprimer une Salle" />
-      <Text layoutX="154.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez une Salle :" wrappingWidth="119.13671875" />
-      <ComboBox layoutX="278.0" layoutY="107.0" prefWidth="150.0" />
-      <Button layoutX="209.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" text="Supprimer la Salle" />
+      <Text id="idEAPText" layoutX="28.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Votre Facture :" wrappingWidth="139.13671875" />
+      <ListView fx:id="listFacture" layoutX="135.0" layoutY="75.0" prefHeight="235.0" prefWidth="345.0" />
+      <Button id="idConfirmerBouton" fx:id="btnPaiement" layoutX="247.0" layoutY="379.0" mnemonicParsing="false" onAction="#updateEtatFacture" text="Payer la facture" />
+      <Label layoutX="28.0" layoutY="337.0" prefHeight="17.0" prefWidth="80.0" text="Total à payer :" />
+      <Label fx:id="labelTotal" layoutX="108.0" layoutY="337.0" prefHeight="17.0" prefWidth="139.0" />
       <MenuBar fx:id="barreAdmin" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
          <menus>
             <Menu mnemonicParsing="false" text="Retour">

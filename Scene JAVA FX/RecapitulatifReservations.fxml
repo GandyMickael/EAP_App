@@ -6,13 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="479.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.o7planning.javafx.MyController">
+<AnchorPane prefHeight="479.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur">
    <children>
-      <Text id="idFacturerText" layoutX="220.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Récapitulatif des réservations" wrappingWidth="159.13671875" />
-      <ListView id="idListeEntreprise" layoutX="118.0" layoutY="104.0" prefHeight="304.0" prefWidth="364.0" />
-      <Button id="idConfirmerBouton" layoutX="238.0" layoutY="428.0" mnemonicParsing="false" text="Récupérer la facture" />
-      <Label layoutX="119.0" layoutY="42.0" prefHeight="17.0" prefWidth="195.0" />
-      <Text layoutX="22.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="n° d'entreprise :" />
+      <Text id="idFacturerText" layoutX="212.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Récapitulatif de vos réservations" wrappingWidth="175.13671875" />
+      <ListView id="idListeEntreprise" layoutX="118.0" layoutY="80.0" prefHeight="304.0" prefWidth="364.0" />
+      <Button id="idConfirmerBouton" layoutX="238.0" layoutY="409.0" mnemonicParsing="false" onAction="#getFacture" text="Récupérer la facture" />
       <MenuBar fx:id="barreAdmin" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
          <menus>
             <Menu mnemonicParsing="false" text="Retour">

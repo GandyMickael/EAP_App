@@ -5,31 +5,36 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur">
    <children>
       <MenuBar fx:id="barreAdmin" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
          <menus>
             <Menu fx:id="ajoutAdmin" mnemonicParsing="false" text="Ajouter">
                <items>
-                  <MenuItem fx:id="ajoutCharge" mnemonicParsing="false" onAction="#changeToAjoutCharge" text="Ajouter une Salle" />
-                  <MenuItem fx:id="ajoutEnseignant" mnemonicParsing="false" onAction="#changeToAjoutEnseignant" text="Ajouter un Client" />
+                  <MenuItem fx:id="ajoutSalle" mnemonicParsing="false" onAction="#changeToAjoutSalle" text="Ajouter une Salle" />
+                  <MenuItem fx:id="ajoutClient" mnemonicParsing="false" onAction="#changeToAjoutClient" text="Ajouter un Client" />
                </items>
             </Menu>
             <Menu fx:id="suppAdmin" mnemonicParsing="false" text="Supprimer">
                <items>
-                  <MenuItem fx:id="suppTarif" mnemonicParsing="false" onAction="#changeToSuppTarif" text="Supprimer une Salle" />
-                  <MenuItem fx:id="suppEnseignant" mnemonicParsing="false" onAction="#changeToSuppEnseignant" text="Supprimer un Client" />
+                  <MenuItem fx:id="suppSalle" mnemonicParsing="false" onAction="#changeToSuppSalle" text="Supprimer une Salle" />
+                  <MenuItem fx:id="suppClient" mnemonicParsing="false" onAction="#changeToSuppEClient" text="Supprimer un Client" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Modification">
                <items>
-                  <MenuItem fx:id="modifMatiere" mnemonicParsing="false" onAction="#changeToModifMatiere" text="Modifier l'état d'une Salle" />
+                  <MenuItem fx:id="modifMatiere" mnemonicParsing="false" onAction="#changeToModifSalle" text="Modifier l'état d'une Salle" />
+               </items>
+            </Menu>
+            <Menu fx:id="ajoutAdmin1" mnemonicParsing="false" text="Voir le Suivi">
+               <items>
+                  <MenuItem fx:id="ajoutSalle1" mnemonicParsing="false" onAction="#changeToSuiviSalles" text="Suivi Salles" />
+                  <MenuItem fx:id="ajoutClient1" mnemonicParsing="false" onAction="#changeToSuiviClients" text="Suivi Clients" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Déconnexion">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Déconnecté" />
+                  <MenuItem mnemonicParsing="false" onAction="#disconnect" text="Déconnecté" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Quitter">

@@ -6,28 +6,28 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur">
    <children>
       <MenuBar fx:id="barreAdmin" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
          <menus>
             <Menu fx:id="ajoutAdmin" mnemonicParsing="false" text="Réserver une Salle">
                <items>
-                  <MenuItem fx:id="ajoutCharge" mnemonicParsing="false" onAction="#changeToAjoutCharge" text="Rechercher une salle disponible" />
+                  <MenuItem fx:id="ajoutCharge" mnemonicParsing="false" onAction="#changeToAjoutLocation" text="Rechercher une salle disponible" />
                </items>
             </Menu>
             <Menu fx:id="suppAdmin" mnemonicParsing="false" text="Gérer les Réservations">
                <items>
-                  <MenuItem fx:id="suppTarif" mnemonicParsing="false" onAction="#changeToSuppTarif" text="Voir mes réservations" />
+                  <MenuItem fx:id="suppTarif" mnemonicParsing="false" onAction="#changeToViewLocation" text="Voir mes réservations" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Facturation">
                <items>
-                  <MenuItem fx:id="modifMatiere" mnemonicParsing="false" onAction="#changeToModifMatiere" text="Voir ma facture actuelle" />
+                  <MenuItem fx:id="modifMatiere" mnemonicParsing="false" onAction="#changeToViewFacture" text="Voir ma facture actuelle" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Déconnexion">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Déconnecté" />
+                  <MenuItem mnemonicParsing="false" onAction="#disconnect" text="Déconnecté" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Quitter">

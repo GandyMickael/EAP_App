@@ -1,3 +1,6 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -8,6 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 
 
 
@@ -34,8 +41,20 @@ public class Salle {
 	@Column(name="nbLocations")
 	private int nbLocation;
 	
+	@Transient
+	private String type;
+	
+	@Transient
+	private Button reserver = new Button("Réserver");
+	
 	public Salle(){
+		reserver.setOnAction(e->{
+			Controleur c = new Controleur();
+			System.out.println(this.getNom()+this.getId());
+			c.reservation(this.getNom());
+		});
 	}
+	
 	
 	public Salle(int unID, String unNom, String unEtat, int unNb) {
 		this.id = unID;
@@ -80,4 +99,31 @@ public class Salle {
 		 this.nbLocation=this.nbLocation+1;
 	 }
 
+	public Button getReserver() {
+		return reserver;
+	}
+
+	public void setReserver(Button reserver) {
+		this.reserver = reserver;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getType() {
+		// TODO Auto-generated method stub
+		String leType=null;
+		/*if(this.nom.contains("Bureau")){
+			leType="Bureau";
+		}
+		else{
+			leType="Salle de réunion";
+		}*/
+		return leType;
+	}
+
+	public static void reservation(){
+
+	}
 }

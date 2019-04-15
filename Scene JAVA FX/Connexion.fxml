@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="368.0" prefWidth="431.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.o7planning.javafx.MyController">
+   <children>
+      <Button id="idbuttonconfirmer" layoutX="152.0" layoutY="242.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="127.0" text="Connexion" />
+      <TextField id="idFieldPassword" layoutX="188.0" layoutY="153.0" prefHeight="25.0" prefWidth="150.0" />
+      <Text id="idAreaPassword" layoutX="98.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" wrappingWidth="90.13671875" />
+      <TextField id="idFieldLogin" layoutX="188.0" layoutY="118.0" prefHeight="25.0" prefWidth="150.0" />
+      <Text id="idAreaLogin" layoutX="98.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login :" />
+      <Text id="idAreaAuthentification" layoutX="170.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Authentification" wrappingWidth="90.13671875" />
+      <Text layoutX="98.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous êtes :" wrappingWidth="58.13671875" />
+      <ComboBox layoutX="185.0" layoutY="186.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>

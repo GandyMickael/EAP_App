@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -10,6 +12,7 @@ import javax.persistence.Transient;
 @Table(name="entreprisecliente")
 public class EntrepriseCliente {
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="idEntrepriseCliente")
 	private int id;
 	
@@ -28,6 +31,9 @@ public class EntrepriseCliente {
 	@Column(name="nbLocationsEffectuee")
 	private int nbLocations;
 	
+	@Column(name="mdp")
+	private String mdp;
+	
 	@Transient
 	ArrayList<Location> lesLocations;
 	
@@ -42,6 +48,7 @@ public class EntrepriseCliente {
 		this.adresseMail = uneAdresseMail;
 		this.lesLocations =  new ArrayList<Location>();
 		this.nbLocations = 0;
+		this.mdp=unNom;
 	}
 	
 	
@@ -54,6 +61,7 @@ public class EntrepriseCliente {
 		this.adresseMail = uneAdresseMail;
 		this.lesLocations = desLocations;
 		this.nbLocations = 0;
+		this.mdp=unNom;
 	}
 
 
