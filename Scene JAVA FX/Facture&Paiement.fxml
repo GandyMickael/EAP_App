@@ -8,11 +8,10 @@
 
 <AnchorPane prefHeight="458.0" prefWidth="424.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur">
    <children>
-      <Text id="idEAPText" layoutX="28.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Votre Facture :" wrappingWidth="139.13671875" />
-      <ListView fx:id="listFacture" layoutX="135.0" layoutY="75.0" prefHeight="235.0" prefWidth="345.0" />
-      <Button id="idConfirmerBouton" fx:id="btnPaiement" layoutX="247.0" layoutY="379.0" mnemonicParsing="false" onAction="#updateEtatFacture" text="Payer la facture" />
-      <Label layoutX="28.0" layoutY="337.0" prefHeight="17.0" prefWidth="80.0" text="Total à payer :" />
-      <Label fx:id="labelTotal" layoutX="108.0" layoutY="337.0" prefHeight="17.0" prefWidth="139.0" />
+      <Text id="idEAPText" layoutX="103.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ATTENTION : Une fois générée, vous ne pourrez plus modifier la facture." wrappingWidth="394.13671875" />
+      <Button id="idConfirmerBouton" fx:id="btnPaiement" layoutX="455.0" layoutY="395.0" mnemonicParsing="false" onAction="#updateEtatFacture" text="Payer la facture" />
+      <Label layoutX="28.0" layoutY="399.0" prefHeight="17.0" prefWidth="80.0" text="Total à payer :" />
+      <Label fx:id="prix" layoutX="108.0" layoutY="399.0" prefHeight="17.0" prefWidth="139.0" />
       <MenuBar fx:id="barreAdmin" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
          <menus>
             <Menu mnemonicParsing="false" text="Retour">
@@ -32,5 +31,13 @@
             </Menu>
          </menus>
       </MenuBar>
+      <TableView fx:id="listFacture" layoutX="110.0" layoutY="132.0" prefHeight="245.0" prefWidth="381.0">
+        <columns>
+          <TableColumn fx:id="col_salle" prefWidth="121.0" text="Salle" />
+          <TableColumn fx:id="col_debut" prefWidth="130.0" text="Debut" />
+            <TableColumn fx:id="col_fin" prefWidth="129.0" text="Fin" />
+        </columns>
+      </TableView>
+      <Button id="idConfirmerBouton" fx:id="btnPaiement1" layoutX="245.0" layoutY="86.0" mnemonicParsing="false" onAction="#setFacture" text="Générer la facture" />
    </children>
 </AnchorPane>

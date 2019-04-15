@@ -8,12 +8,10 @@
 
 <AnchorPane prefHeight="490.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur">
    <children>
-      <Text id="idSuivreText" layoutX="90.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les salles les plus reservées :" wrappingWidth="185.13671875" />
-      <ListView id="idListeLocaux" fx:id="listPlusSalle" layoutX="90.0" layoutY="159.0" prefHeight="113.0" prefWidth="421.0" />
+      <Text id="idSuivreText" layoutX="90.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voici la liste des salles ainsi que leur nombre de location :" wrappingWidth="307.13671875" />
+      <ListView id="idListeLocaux" fx:id="listPlusSalle" layoutX="90.0" layoutY="193.0" prefHeight="251.0" prefWidth="421.0" />
       <Button id="idConfirmerbouton" fx:id="btnSetSuiviSalle" layoutX="404.0" layoutY="80.0" mnemonicParsing="false" onAction="#setSuiviSalles" text="Confirmer" />
       <ComboBox fx:id="boxtypeSalle" layoutX="225.0" layoutY="80.0" prefWidth="150.0" />
-      <Text id="idSuivreText" layoutX="90.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les salles les moins reservées :" wrappingWidth="185.13671875" />
-      <ListView id="idListeLocaux" fx:id="listMoinsSalle" layoutX="90.0" layoutY="324.0" prefHeight="113.0" prefWidth="421.0" />
       <Text layoutX="68.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez le type de salle :" wrappingWidth="150.0" />
       <Text layoutX="218.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suivi Statistique des salles" wrappingWidth="164.13671875" />
       <MenuBar fx:id="barreAdmin" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">

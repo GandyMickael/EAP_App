@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import javafx.scene.control.Button;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;  
 
@@ -35,9 +37,21 @@ public class Location {
 	@Transient
 	private Salle laSalle; //Necessaire au bon fonctionnement du programme au niveau des classes.
 	
+	@Transient
+	private String nomSalle; //Necessaire au bon fonctionnement du programme au niveau des classes.
+	
+	@Transient
+	private Button annuler = new Button("Annuler");
 
 	public Location(){
+		//this.nomSalle=Modele.getNomSalle(idSalle);
+		//System.out.println(idSalle+dateDebut+dateFin+idClt+idSalle+nomSalle);
+		this.annuler.setOnAction(e->{
+			Controleur c = new Controleur();
+			c.annuler_Reservation(this.getId(),this.getIdSalle());
+		});
 	}
+
 
 	public Location(String uneDateDebut, String uneDateFin, Salle laSalle, int idEnt){
 		this.dateDebut = uneDateDebut;
@@ -124,4 +138,21 @@ public class Location {
 		return date1;
 		
 	}
+	
+	public String getNomSalle() {
+		return nomSalle;
+	}
+
+	public void setNomSalle(String nomSalle) {
+		this.nomSalle = nomSalle;
+	}
+
+	public Button getAnnuler() {
+		return annuler;
+	}
+
+	public void setAnnuler(Button annuler) {
+		this.annuler = annuler;
+	}
+
 }

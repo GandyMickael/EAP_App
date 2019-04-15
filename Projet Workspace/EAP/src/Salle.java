@@ -47,6 +47,7 @@ public class Salle {
 	@Transient
 	private Button reserver = new Button("Réserver");
 	
+	
 	public Salle(){
 		reserver.setOnAction(e->{
 			Controleur c = new Controleur();
@@ -121,9 +122,5 @@ public class Salle {
 			leType="Salle de réunion";
 		}*/
 		return leType;
-	}
-
-	public static void reservation(){
-
 	}
 }

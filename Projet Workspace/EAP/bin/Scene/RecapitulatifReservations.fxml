@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="479.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur">
    <children>
       <Text id="idFacturerText" layoutX="212.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Récapitulatif de vos réservations" wrappingWidth="175.13671875" />
-      <ListView id="idListeEntreprise" layoutX="118.0" layoutY="80.0" prefHeight="304.0" prefWidth="364.0" />
       <Button id="idConfirmerBouton" layoutX="238.0" layoutY="409.0" mnemonicParsing="false" onAction="#getFacture" text="Récupérer la facture" />
       <MenuBar fx:id="barreAdmin" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
          <menus>
@@ -30,5 +28,13 @@
             </Menu>
          </menus>
       </MenuBar>
+      <TableView fx:id="listLocation" layoutX="84.0" layoutY="94.0" prefHeight="266.0" prefWidth="432.0">
+        <columns>
+          <TableColumn fx:id="col_salle" prefWidth="119.0" text="Salle" />
+            <TableColumn fx:id="col_debut" prefWidth="130.0" text="Début" />
+            <TableColumn fx:id="col_fin" prefWidth="102.0" text="Fin" />
+            <TableColumn fx:id="col_supp" minWidth="0.0" prefWidth="79.0" text="Annuler" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

@@ -372,6 +372,29 @@ public class Modele {
 		return laSalle;
 	}
 	
+	public static String getNomSalle(int idSalle){
+		SessionFactory factory = new Configuration()
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Salle.class)
+				.buildSessionFactory();
+		Session session = factory.getCurrentSession();
+		Salle laSalle=null;
+		String nomSalle="";
+		try{
+			//start a transaction
+			session.beginTransaction();
+			nomSalle = (String) session.createQuery("Select nom from Salle where idSalle = "+idSalle).getSingleResult();
+			//commit les transactions
+			session.getTransaction().commit();
+			//System.out.println(nomSalle);
+		}
+		finally{
+			factory.close();
+		}
+		return nomSalle;
+	}
+
+	
 	public static void addClient(EntrepriseCliente clt){
 		//create session factory
 		SessionFactory factory = new Configuration()
@@ -518,6 +541,55 @@ public class Modele {
 		}
 	}
 	
+	public static void decrementNbLocations(int id, String type){
+		
+		if(type=="Salle"){
+			SessionFactory factory = new Configuration()
+					.configure("hibernate.cfg.xml")
+					.addAnnotatedClass(Salle.class)
+					.buildSessionFactory();
+			Session session = factory.getCurrentSession();
+			try{
+				session.beginTransaction();
+				Salle laSalle = (Salle) session.createQuery("from Salle where idSalle = "+id).getSingleResult();
+				if(laSalle==null){
+					System.out.println("increment salle null");
+				}
+				else{
+					laSalle.setNbLocation(laSalle.getNbLocation()-1);
+				}
+				//commit les transactions
+				session.getTransaction().commit();
+				System.out.println("Success UPDATE");
+			}
+			
+			finally{
+				factory.close();
+			}
+			
+		}
+		else{
+			SessionFactory factory = new Configuration()
+					.configure("hibernate.cfg.xml")
+					.addAnnotatedClass(EntrepriseCliente.class)
+					.buildSessionFactory();
+			Session session = factory.getCurrentSession();
+			try{
+				session.beginTransaction();
+				EntrepriseCliente uneEnt = (EntrepriseCliente) session.createQuery("from EntrepriseCliente where idEntrepriseCliente = "+id).getSingleResult();
+				uneEnt.setNbLocations(uneEnt.getNbLocations()-1);
+		
+				//commit les transactions
+				session.getTransaction().commit();
+				System.out.println("Success UPDATE");
+			}
+			
+			finally{
+				factory.close();
+			}
+		}
+	}
+	
 	private static void save(Object o, SessionFactory factory){
 		//create session
 		Session session = factory.getCurrentSession();
@@ -540,6 +612,61 @@ public class Modele {
 		}
 	}
 
-	
+	public static void removeLocation(int idsalle, int idEntConnected) {
+		// TODO Auto-generated method stub
+		//create session factory
+		SessionFactory factory = new Configuration()
+								.configure("hibernate.cfg.xml")
+								.addAnnotatedClass(Location.class)
+								.buildSessionFactory();
+		//create session
+		Session session = factory.getCurrentSession();
+		
+		try {
+			//now get a new session and start transaction
+			session.beginTransaction();
+
+			//delete
+			System.out.println("Suppression ");
+			session.createQuery("delete from Location where idSalle="+idsalle+" AND idEntrepriseCliente="+idEntConnected).executeUpdate();
+			
+			// End
+			System.out.println("Fini");
+			session.getTransaction().commit();
+		}
+		finally{
+			factory.close();
+		}	
+
+	}
+
+	public static void removeLocation(int idLoc) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		//create session factory
+		SessionFactory factory = new Configuration()
+								.configure("hibernate.cfg.xml")
+								.addAnnotatedClass(Location.class)
+								.buildSessionFactory();
+		//create session
+		Session session = factory.getCurrentSession();
+		
+		try {
+			//now get a new session and start transaction
+			session.beginTransaction();
+
+			//delete
+			System.out.println("Suppression ");
+			session.createQuery("delete from Location where id="+idLoc).executeUpdate();
+			
+			// End
+			System.out.println("Fini");
+			session.getTransaction().commit();
+		}
+		finally{
+			factory.close();
+		}	
+
+	}
 	
 }
