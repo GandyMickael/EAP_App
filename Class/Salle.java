@@ -66,7 +66,7 @@ public class Salle {
 	
 	public Salle(String unNom) {
 		this.nom = unNom;
-		this.etat = "Disponible";
+		this.etat = "Libre";
 		this.nbLocation=0;
 	}
 	

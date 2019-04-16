@@ -52,23 +52,29 @@ public class Controleur implements Initializable {
    @FXML TextField FieldNomEnt;
    @FXML TextField fieldAdr;
    @FXML TextField fieldMail ;
-   @FXML TextField fieldNomSalle;
    @FXML TextField fieldTel= new NumberField("test");
+   @FXML TextField fieldNomSalle = new NumberField("test");
    @FXML Label labelTest = new Label();
    @FXML Label prix = new Label();
    @FXML TableView listSalle = new TableView<>();
    @FXML TableColumn<Salle,String> col_name = new TableColumn<>("Salle");
   // @FXML TableColumn<Salle,String> col_type = new TableColumn<>("Type");
    @FXML TableColumn<Salle,Button> col_updt = new TableColumn<>("Réserver");
-   @FXML TableView listPlusClt;
-   @FXML TableView listMoinsClt;
-   @FXML TableView listPlusSalle;
+   @FXML TableView listPlusClt = new TableView<>();;
+   @FXML TableView listPlusSalle = new TableView<>();
    @FXML TableView listFacture = new TableView<>();
    @FXML TableView listLocation = new TableView<>();
    @FXML TableColumn<Location,String> col_salle = new TableColumn<>("Salle");
    @FXML TableColumn<Location,String> col_debut = new TableColumn<>("Début");
    @FXML TableColumn<Location,String> col_fin = new TableColumn<>("Fin");
    @FXML TableColumn<Location,Button> col_supp = new TableColumn<>("");
+   @FXML TableColumn<Salle,Integer> col_nbLocation = new TableColumn<>("");
+   @FXML TableColumn<EntrepriseCliente,String> col_ent = new TableColumn<>("Salle");
+   @FXML TableColumn<EntrepriseCliente,String> col_adr = new TableColumn<>("Adresse");
+   @FXML TableColumn<EntrepriseCliente,String> col_mail = new TableColumn<>("E-Mail");
+   @FXML TableColumn<EntrepriseCliente,Integer> col_numTel = new TableColumn<>("Tel");
+   @FXML TableColumn<EntrepriseCliente,Integer> col_nbLoc = new TableColumn<>("Nombre de locations");
+
    
    //Charge
    //@FXML Menu deco;
@@ -84,6 +90,7 @@ public class Controleur implements Initializable {
 	   boxtypeSalle.setItems(typesSalle);
 	   boxetatSalle.setItems(etatsSalle);
 	   Controleur.NumberField(fieldTel);
+	   Controleur.NumberField(fieldNomSalle);
 	   
    }
    
@@ -329,10 +336,23 @@ public class Controleur implements Initializable {
    	}
    	
 	// TODO Auto-generated method stub
-   	public  void ajoutClient() {}
+   	public  void ajoutClient() {
+   	    String nom = FieldNomEnt.getText();
+   	    String adr = fieldAdr.getText();
+   	    String mail = fieldMail.getText() ;
+   	    int tel = Integer.parseInt(fieldTel.getText());
+   	    EntrepriseCliente unEnt = new EntrepriseCliente(nom,adr,tel,mail);
+   	    Modele.addClient(unEnt);
+   	    changeToAjoutClient();
+   	}
    	
    	// TODO Auto-generated method stub
-   	public  void ajoutSalle() {}
+   	public  void ajoutSalle() {
+   		String nomSalle = boxtypeSalle.getValue()+" "+fieldNomSalle.getText();
+   		Salle uneSalle = new Salle(nomSalle);  
+   		Modele.addSalle(uneSalle);
+   		changeToAjoutSalle();
+   	}
    	
    	// TODO Auto-generated method stub
    	public  void updateEtatFacture() {
@@ -348,7 +368,7 @@ public class Controleur implements Initializable {
    	
    	
    	// TODO Auto-generated method stub
-   	public  void updateSalle() {}
+   	public  void updateSalle() {Modele.updtSalle(boxSalles.getValue(), boxetatSalle.getValue()); changeToModifSalle();}
    	
    	// TODO Auto-generated method stub
    	public  void getFacture() {
@@ -368,13 +388,41 @@ public class Controleur implements Initializable {
    	public  void searchSalle() {initTableSalle(listSalle); dateDebut=this.fieldDateDebut.getText(); dateFin=this.fieldDateFin.getText();}
    	
    	// TODO Auto-generated method stub
-   	public  void suppClient() {}
+   	public  void suppClient() {Modele.removeClient(boxClients.getValue()); changeToSuppEClient();}
    	
    	// TODO Auto-generated method stub
-   	public  void suppSalle() {}
+   	public  void suppSalle() {Modele.removeSalle(boxSalles.getValue()); changeToSuppSalle();}
    	
    	// TODO Auto-generated method stub
-   	public  void setSuiviSalles() {}
+   	public  void setSuiviSalles() {initTableSuiviSalle(listPlusSalle);}
+   	
+   	// TODO Auto-generated method stub
+   	public  void setSuiviClients() {
+   		initTableClt(listPlusClt);
+   	}
+   	
+    public void initTableClt(TableView table){
+    	initColsClt(table);  
+    }
+    public void initColsClt(TableView table){
+ 	   //switch/if
+    	col_ent.setCellValueFactory(new PropertyValueFactory<EntrepriseCliente,String>("nom"));
+    	col_adr.setCellValueFactory(new PropertyValueFactory<EntrepriseCliente,String>("adresse"));
+    	col_numTel.setCellValueFactory(new PropertyValueFactory<EntrepriseCliente,Integer>("numTel"));
+    	col_mail.setCellValueFactory(new PropertyValueFactory<EntrepriseCliente,String>("adresseMail"));
+    	col_nbLoc.setCellValueFactory(new PropertyValueFactory<EntrepriseCliente,Integer>("nbLocations"));
+    	setTableClt(table);
+    }
+    
+    public void setTableClt(TableView table){
+ 	   //switch/if
+ 		   table.getColumns().clear();
+ 		   ArrayList<EntrepriseCliente> lesEnts = Modele.getAllClt();
+ 		   table.setItems(FXCollections.observableArrayList(lesEnts));
+ 		   table.getColumns().addAll(col_ent,col_adr,col_mail,col_numTel,col_nbLoc);	
+    }
+
+
    	
 	public static void NumberField(TextField field){
 		//NumberField test= this;
@@ -408,12 +456,12 @@ public class Controleur implements Initializable {
 		        err.printStackTrace();
 		    }	   
 		}else{
-			System.out.println(idSalle+" "+idEntConnected+" "+
+			System.out.println("else"+idSalle+" "+idEntConnected+" "+
 					dateDebut+" "+
 					dateFin);
 			Location loc = new Location(dateDebut, dateFin, idSalle, idEntConnected);
 			Modele.addLocation(loc);
-			Modele.updateSalle(nameSalle, "Réservé");
+			Modele.updateSalle(nameSalle, "Réservée");
 			changeToAjoutLocation();
 		}
 	}
@@ -501,6 +549,32 @@ public class Controleur implements Initializable {
  	   }
  	   
     }
+    
+    public void initTableSuiviSalle(TableView table){
+  	   initColsSuiviSalle(table);  
+     }
+     public void initColsSuiviSalle(TableView table){
+  	   //switch/if
+  	   col_name.setCellValueFactory(new PropertyValueFactory<Salle,String>("nom"));
+  	   col_nbLocation.setCellValueFactory(new PropertyValueFactory<Salle,Integer>("nbLocation"));
+  	   setTableSuiviSalle(table);
+     }
+     
+     public void setTableSuiviSalle(TableView table){
+  	   //switch/if
+  	   if(boxtypeSalle.getValue()=="Bureau"){
+  		   table.getColumns().clear();
+  		   table.setItems(FXCollections.observableArrayList(Modele.getAllBureauDispo()));
+  		   table.getColumns().addAll(col_name,col_nbLocation);
+  	   }
+  	   else{
+  		   table.getColumns().clear();
+  		   table.setItems(FXCollections.observableArrayList(Modele.getAllSalleRDispo()));
+  		   table.getColumns().addAll(col_name,col_nbLocation);
+  	   }
+  	   
+     }
+
     
     public void initTableLoc(TableView table){
     	initColsLoc(table);  

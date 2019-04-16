@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `eap` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `eap`;
 -- MySQL dump 10.13  Distrib 5.6.43, for Win64 (x86_64)
 --
 -- Host: localhost    Database: eap
@@ -60,8 +58,9 @@ CREATE TABLE `entreprisecliente` (
   `numtel` int(11) DEFAULT NULL,
   `adressemail` varchar(30) DEFAULT NULL,
   `nbLocationsEffectuee` int(45) DEFAULT NULL,
+  `mdp` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idEntrepriseCliente`)
-) ENGINE=MyISAM AUTO_INCREMENT=1235468735 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1235468737 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +69,7 @@ CREATE TABLE `entreprisecliente` (
 
 LOCK TABLES `entreprisecliente` WRITE;
 /*!40000 ALTER TABLE `entreprisecliente` DISABLE KEYS */;
-INSERT INTO `entreprisecliente` (`idEntrepriseCliente`, `nom`, `adresse`, `numtel`, `adressemail`, `nbLocationsEffectuee`) VALUES (1,'CliCli','2 bambou',123456788,'clicli@clicli.com',2),(2,'AnimaBoire','a',1,'a',0);
+INSERT INTO `entreprisecliente` (`idEntrepriseCliente`, `nom`, `adresse`, `numtel`, `adressemail`, `nbLocationsEffectuee`, `mdp`) VALUES (1,'CliCli','2 bambou',123456788,'clicli@clicli.com',15,'CliCli'),(2,'AnimaBoire','a',1,'a',0,'AnimaBoire');
 /*!40000 ALTER TABLE `entreprisecliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +87,7 @@ CREATE TABLE `facture` (
   `etat` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idFacture`),
   KEY `idEntrepriseCliente` (`idEntrepriseCliente`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +96,7 @@ CREATE TABLE `facture` (
 
 LOCK TABLES `facture` WRITE;
 /*!40000 ALTER TABLE `facture` DISABLE KEYS */;
-INSERT INTO `facture` (`idFacture`, `prix`, `idEntrepriseCliente`, `etat`) VALUES (4,160,1,'Payée');
+INSERT INTO `facture` (`idFacture`, `prix`, `idEntrepriseCliente`, `etat`) VALUES (7,200,1,'Payée'),(8,40,1,'Payée'),(9,100,1,'Payée'),(10,340,1,'Payée'),(11,0,1,'Payée'),(12,0,1,'Payée');
 /*!40000 ALTER TABLE `facture` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +116,7 @@ CREATE TABLE `location` (
   PRIMARY KEY (`id`),
   KEY `idSalle` (`idSalle`),
   KEY `idEntrepriseCliente` (`idEntrepriseCliente`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +125,7 @@ CREATE TABLE `location` (
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
-INSERT INTO `location` (`id`, `dateDebut`, `dateFin`, `idSalle`, `idEntrepriseCliente`) VALUES (1,'11/02/1997','13/02/1997',2,1),(2,'11/02/2010','13/02/2010',3,2),(3,'12/04/2010','25/04/2010',22,1),(5,'12/05/2010','13/05/2010',22,1);
+INSERT INTO `location` (`id`, `dateDebut`, `dateFin`, `idSalle`, `idEntrepriseCliente`) VALUES (2,'11/02/2010','13/02/2010',3,2);
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,7 +143,7 @@ CREATE TABLE `salle` (
   `typeSalle` varchar(30) DEFAULT NULL,
   `nbLocations` int(45) DEFAULT NULL,
   PRIMARY KEY (`idSalle`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,7 +152,7 @@ CREATE TABLE `salle` (
 
 LOCK TABLES `salle` WRITE;
 /*!40000 ALTER TABLE `salle` DISABLE KEYS */;
-INSERT INTO `salle` (`idSalle`, `nom`, `etat`, `typeSalle`, `nbLocations`) VALUES (1,'Bureaux 1','Libre','Bureaux',0),(2,'Bureaux 2','Libre','Bureaux',0),(3,'Bureaux 3','Libre','Bureaux',0),(4,'Bureaux 4 ','Libre','Bureaux',0),(5,'Bureaux 5','Libre','Bureaux',0),(6,'Salle de Réunion 1','Libre','Salle de Réunion',0),(7,'Salle de Réunion 2','Libre','Salle de Réunion',0),(8,'Salle de Réunion 3','Libre','Salle de Réunion',0),(9,'Salle de Réunion 4','Libre','Salle de Réunion',0),(10,'Salle de Réunion 5','Libre','Salle de Réunion',0),(22,'Bureau 136','Libre','Bureaux',1);
+INSERT INTO `salle` (`idSalle`, `nom`, `etat`, `typeSalle`, `nbLocations`) VALUES (1,'Bureaux 1','Libre','Bureaux',2),(2,'Bureaux 2','Libre','Bureaux',1),(3,'Bureaux 3','Libre','Bureaux',1),(4,'Bureaux 4 ','Libre','Bureaux',1),(5,'Bureaux 5','Libre','Bureaux',0),(6,'Salle de Réunion 1','Libre','Salle de Réunion',3),(7,'Salle de Réunion 2','Libre','Salle de Réunion',1),(8,'Salle de Réunion 3','Libre','Salle de Réunion',0),(9,'Salle de Réunion 4','Libre','Salle de Réunion',0),(10,'Salle de Réunion 5','Libre','Salle de Réunion',0),(30,'Bureau 10','Libre','Salle',0),(22,'Bureau 136','Libre','Bureaux',5);
 /*!40000 ALTER TABLE `salle` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -166,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-14  1:00:37
+-- Dump completed on 2019-04-16 21:27:05

@@ -1,2 +1,5 @@
 Ce script SQL ne contient que la création des tables et l'ajout de certaines valeurs.
 Il vous faut créer la base de données au préalable. Le nom de table utilisé dans le code est : eap
+
+La connexion utilise root avec le mdp : admin.
+Le port 3306 est utilisé.

@@ -8,8 +8,7 @@
 
 <AnchorPane prefHeight="490.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controleur">
    <children>
-      <Text id="idSuivreText" layoutX="90.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voici la liste des salles ainsi que leur nombre de location :" wrappingWidth="307.13671875" />
-      <ListView id="idListeLocaux" fx:id="listPlusSalle" layoutX="90.0" layoutY="193.0" prefHeight="251.0" prefWidth="421.0" />
+      <Text id="idSuivreText" layoutX="147.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Voici la liste des salles ainsi que leur nombre de location :" wrappingWidth="307.13671875" />
       <Button id="idConfirmerbouton" fx:id="btnSetSuiviSalle" layoutX="404.0" layoutY="80.0" mnemonicParsing="false" onAction="#setSuiviSalles" text="Confirmer" />
       <ComboBox fx:id="boxtypeSalle" layoutX="225.0" layoutY="80.0" prefWidth="150.0" />
       <Text layoutX="68.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choisissez le type de salle :" wrappingWidth="150.0" />
@@ -33,5 +32,11 @@
             </Menu>
          </menus>
       </MenuBar>
+      <TableView fx:id="listPlusSalle" layoutX="197.0" layoutY="208.0" prefHeight="200.0" prefWidth="207.0">
+        <columns>
+          <TableColumn fx:id="col_salle" prefWidth="75.0" text="Salle" />
+          <TableColumn fx:id="col_nbLocation" prefWidth="130.0" text="Nombre de locations" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

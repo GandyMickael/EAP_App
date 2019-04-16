@@ -249,7 +249,7 @@ public class Modele {
 	}
 	public static void addSalle(Salle uneSalle){
 		
-		if(uneSalle.getClass().getName()=="Bureaux"){
+		if(uneSalle.getNom().contains("Bureau")){
 			//create session factory
 			SessionFactory factory = new Configuration()
 									.configure("hibernate.cfg.xml")
@@ -334,7 +334,26 @@ public class Modele {
 		}	
 	}
 	
-	
+	public static void updtSalle(String nomSalle, String unEtat){
+		//create session factory
+			SessionFactory factory = new Configuration()
+									.configure("hibernate.cfg.xml")
+									.addAnnotatedClass(Salle.class)
+									.buildSessionFactory();
+			//create session
+			Session session = factory.getCurrentSession();
+			
+			try {
+				session.beginTransaction();
+				//retrieve salle based on the id: primary key
+					Salle laSalle = (Salle) session.createQuery("from Salle where nom = '"+nomSalle+"'").getSingleResult();
+					changeEtat(laSalle, unEtat, session);
+			}
+			finally{
+				factory.close();
+			}
+	}
+
 	private static void changeEtat(Salle laSalle, String unEtat, Session session){
 		//update salle
 		System.out.println("Updating student...");

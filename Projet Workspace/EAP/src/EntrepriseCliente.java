@@ -40,8 +40,8 @@ public class EntrepriseCliente {
 	public EntrepriseCliente(){
 	}
 	
-	public EntrepriseCliente(int unID, String unNom, String uneAdresse, int unNumTel, String uneAdresseMail){
-		this.id = unID;
+	public EntrepriseCliente(String unNom, String uneAdresse, int unNumTel, String uneAdresseMail){
+		//this.id = unID;
 		this.nom = unNom;
 		this.adresse = uneAdresse;
 		this.numTel = unNumTel;

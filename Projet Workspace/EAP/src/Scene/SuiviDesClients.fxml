@@ -10,7 +10,6 @@
    <children>
       <Text id="idEAPText" layoutX="228.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suivi Statistique des clients" wrappingWidth="146.73046875" />
       <Text id="idSuivreText" layoutX="84.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous pouvez, ici, voir vos différents clients ainsi que leur nombre de réservations :" wrappingWidth="434.13671875" />
-      <ListView id="idListeLocaux" fx:id="listPlusClt" layoutX="91.0" layoutY="158.0" prefHeight="235.0" prefWidth="421.0" />
       <MenuBar fx:id="barreAdmin" layoutX="1.0" layoutY="1.0" prefHeight="27.0" prefWidth="600.0">
          <menus>
             <Menu mnemonicParsing="false" text="Retour">
@@ -30,5 +29,15 @@
             </Menu>
          </menus>
       </MenuBar>
+      <Button layoutX="224.0" layoutY="80.0" mnemonicParsing="false" onAction="#setSuiviClients" text="Générer la liste des clients" />
+      <TableView fx:id="listPlusClt" layoutX="90.0" layoutY="165.0" prefHeight="250.0" prefWidth="434.0">
+        <columns>
+          <TableColumn fx:id="col_ent" prefWidth="75.0" text="Salle" />
+            <TableColumn fx:id="col_adr" prefWidth="75.0" text="Adresse" />
+            <TableColumn fx:id="col_mail" prefWidth="75.0" text="E-Mail" />
+            <TableColumn fx:id="col_numTel" prefWidth="75.0" text="Tel" />
+            <TableColumn fx:id="col_nbLoc" prefWidth="133.0" text="Nombre de locations" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
