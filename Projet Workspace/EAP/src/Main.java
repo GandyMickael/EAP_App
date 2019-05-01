@@ -140,7 +140,7 @@ public class Main extends Application {
 	                		System.out.println(login+" "+mdp+" "+valeur+" "+Modele.logIn(login, mdp,valeur));
 	                		message.setText("");
 	                		message.setFill(Color.FIREBRICK);//Couleur du message
-	                		message.setText("Identifiant inconnue ou Mot De Passe incorrecte");
+	                		message.setText("Identifiant inconnue ou mot de passe incorrecte");
 	                		grid.add(message,1,7);
 	                		System.out.println (comboBox.getValue ());
 	                	

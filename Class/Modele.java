@@ -14,14 +14,15 @@ public class Modele {
 		boolean connected=false;
 		if(valeur=="administrateur"){
 			System.out.println("Connexion admin en cours ");
-			if(login.equals("admin")&&mdp.equals("admin")){
+			if(login.equals("admin") && mdp.equals("admin") && valeur.equals("administrateur")){
+				System.out.println("dedans");
 				connected=true;
 			}
 		}
 		else{
 			System.out.println("Connexion Client en cours");
 			EntrepriseCliente uneEnt = getClient(login,mdp);
-			if(uneEnt.getNom().equals(login)){
+			if(uneEnt!=null && uneEnt.getNom().equals(login)){
 				connected=true;
 			}
 		}
@@ -324,7 +325,7 @@ public class Modele {
 					
 			try {
 				session.beginTransaction();	
-				//retrieve salle based on the id: primary key
+				//retrieve salle based on the id: primary key);
 				Salle_de_reunion laSalle = (Salle_de_reunion) session.createQuery("from Salle where nom = '"+nomSalle+"'").getSingleResult();
 				changeEtat(laSalle, unEtat, session);
 				}
@@ -384,6 +385,26 @@ public class Modele {
 			else{
 				System.out.println("Success GET Salle");
 			}
+		}
+		finally{
+			factory.close();
+		}
+		return laSalle;
+	}
+	
+	public static Salle getSalle(String nomSalle){
+		SessionFactory factory = new Configuration()
+				.configure("hibernate.cfg.xml")
+				.addAnnotatedClass(Salle.class)
+				.buildSessionFactory();
+		Session session = factory.getCurrentSession();
+		Salle laSalle=null;
+		try{
+			//start a transaction
+			session.beginTransaction();
+			laSalle = (Salle) session.createQuery("from Salle where nom = '"+nomSalle+"'").getSingleResult();
+			//commit les transactions
+			session.getTransaction().commit();
 		}
 		finally{
 			factory.close();

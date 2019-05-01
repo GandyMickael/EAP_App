@@ -24,8 +24,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 public class Controleur implements Initializable {
 	
@@ -74,6 +81,7 @@ public class Controleur implements Initializable {
    @FXML TableColumn<EntrepriseCliente,String> col_mail = new TableColumn<>("E-Mail");
    @FXML TableColumn<EntrepriseCliente,Integer> col_numTel = new TableColumn<>("Tel");
    @FXML TableColumn<EntrepriseCliente,Integer> col_nbLoc = new TableColumn<>("Nombre de locations");
+   @FXML Text message = new Text();
 
    
    //Charge
@@ -339,19 +347,51 @@ public class Controleur implements Initializable {
    	public  void ajoutClient() {
    	    String nom = FieldNomEnt.getText();
    	    String adr = fieldAdr.getText();
-   	    String mail = fieldMail.getText() ;
+   	    String mail = fieldMail.getText();
    	    int tel = Integer.parseInt(fieldTel.getText());
-   	    EntrepriseCliente unEnt = new EntrepriseCliente(nom,adr,tel,mail);
-   	    Modele.addClient(unEnt);
-   	    changeToAjoutClient();
+   	    String testTel = String.valueOf(tel);
+   	    System.out.println(testTel.length());
+   	    if( testTel.length() == 9 && Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", mail)) {
+   	    	EntrepriseCliente unEnt = new EntrepriseCliente(nom,adr,tel,mail);
+   	    	EntrepriseCliente testClient = Modele.getClient(nom,nom);
+   	    	if(testClient!=null) {
+   	    		message.setFill(Color.FIREBRICK);//Couleur du message
+   	    		message.setText("L'entreprise existe déjà dans la BDD.");
+   			
+   	    	}
+   	    	else {
+   	    		message.setFill(Color.GREEN);//Couleur du message
+   	    		message.setText("Entreprise enregistrée");
+   	    		Modele.addClient(unEnt);
+   	    	}
+   	    }
+   	    else {
+	    		message.setFill(Color.FIREBRICK);//Couleur du message
+	    		message.setText("Le numéro de téléphone n'est pas valide");
+   	    }
    	}
    	
    	// TODO Auto-generated method stub
    	public  void ajoutSalle() {
    		String nomSalle = boxtypeSalle.getValue()+" "+fieldNomSalle.getText();
-   		Salle uneSalle = new Salle(nomSalle);  
-   		Modele.addSalle(uneSalle);
-   		changeToAjoutSalle();
+   		Salle uneSalle = null;
+   		if(nomSalle.contains("Bureau")){
+   			 uneSalle = new Bureaux(nomSalle);
+   		}
+   		else {
+   			 uneSalle = new Salle_de_reunion(nomSalle);
+   		}
+   		Salle testSalle = Modele.getSalle(nomSalle);
+   		if(testSalle!=null) {
+   			message.setFill(Color.FIREBRICK);//Couleur du message
+   			message.setText("La salle sélectionné existe déjà.");
+   			
+   		}
+   		else {
+   			message.setFill(Color.GREEN);//Couleur du message
+   			message.setText("Salle enregistrée");
+   			Modele.addSalle(uneSalle);
+   		}
    	}
    	
    	// TODO Auto-generated method stub
@@ -383,9 +423,38 @@ public class Controleur implements Initializable {
    	}
    	
 	public  void getListRes() {initTableLoc(listLocation);}
-   	
+	
    	// TODO Auto-generated method stub
-   	public  void searchSalle() {initTableSalle(listSalle); dateDebut=this.fieldDateDebut.getText(); dateFin=this.fieldDateFin.getText();}
+   	public  void searchSalle() throws ParseException {
+
+		int compareDate = 0;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    	dateDebut=this.fieldDateDebut.getText();
+    	dateFin=this.fieldDateFin.getText();
+        Date d1 = new Date();
+        Date d2 = new Date();
+        d1 = sdf.parse(dateDebut);
+    	d2 = sdf.parse(dateFin);
+        String t1 = sdf.format(d1);
+        String t2 = sdf.format(d2);
+        compareDate = d1.compareTo(d2);
+        
+		if(t1.compareTo(dateDebut) != 0 && t2.compareTo(dateFin) != 0){
+			System.out.println("Erreur saisie date");
+			message.setFill(Color.FIREBRICK);//Couleur du message
+			message.setText("Au moins une des dates n'est pas saisie correctement.");
+		}else {	
+			System.out.println();
+			if(compareDate <= 0 && dateDebut.length() == 10 && dateFin.length() == 10) {
+				initTableSalle(listSalle);
+				message.setText("");
+			}else {
+				System.out.println("Erreur saisie date");
+				message.setFill(Color.FIREBRICK);//Couleur du message
+				message.setText("Au moins une des dates n'est pas saisie correctement.");
+			}
+		}
+   	}
    	
    	// TODO Auto-generated method stub
    	public  void suppClient() {Modele.removeClient(boxClients.getValue()); changeToSuppEClient();}
@@ -437,33 +506,35 @@ public class Controleur implements Initializable {
 		});
 	}
 	
-	public void reservation(String nameSalle){
+	public void reservation(String nameSalle) throws ParseException{
 		Label labelTest=new Label();
 		int idSalle = Modele.getIdSalle(nameSalle);
-		
-		if(dateDebut==null || dateFin==null || dateDebut.equals("") || dateFin.equals("")){
-			try {
-	   			// Read file fxml and draw interface.
-	   			FXMLLoader loader = new FXMLLoader();
-		        loader.setLocation(getClass().getResource("/Scene/Rechercher&ReserverFailed.fxml"));
-		        Parent content = loader.load(); 
+			if(dateDebut==null || dateFin==null || dateDebut.equals("") || dateFin.equals("")){
+				try {
+	   				// Read file fxml and draw interface.
+	   				FXMLLoader loader = new FXMLLoader();
+	   				loader.setLocation(getClass().getResource("/Scene/Rechercher&ReserverFailed.fxml"));
+		        	Parent content = loader.load(); 
 		         
-		        primaryStage.setTitle("Espace Client");
-		        primaryStage.setScene(new Scene(content));
-		        primaryStage.show();
+		        	primaryStage.setTitle("Espace Client");
+		        	primaryStage.setScene(new Scene(content));
+		        	primaryStage.show();
 		            
-		    } catch(Exception err) {
-		        err.printStackTrace();
-		    }	   
-		}else{
-			System.out.println("else"+idSalle+" "+idEntConnected+" "+
+				} catch(Exception err) {
+					err.printStackTrace();
+		    	}	   
+			}else{
+				System.out.println("else"+idSalle+" "+idEntConnected+" "+
 					dateDebut+" "+
 					dateFin);
-			Location loc = new Location(dateDebut, dateFin, idSalle, idEntConnected);
-			Modele.addLocation(loc);
-			Modele.updateSalle(nameSalle, "Réservée");
-			changeToAjoutLocation();
-		}
+				Location loc = new Location(dateDebut, dateFin, idSalle, idEntConnected);
+				Modele.addLocation(loc);
+				Modele.updateSalle(nameSalle, "Réservée");
+		        }
+		        
+				changeToAjoutLocation();
+			
+        
 	}
 	
 	public void annuler_Reservation(int idLoc, int idSalle){

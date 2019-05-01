@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -52,7 +53,12 @@ public class Salle {
 		reserver.setOnAction(e->{
 			Controleur c = new Controleur();
 			System.out.println(this.getNom()+this.getId());
-			c.reservation(this.getNom());
+			try {
+				c.reservation(this.getNom());
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		});
 	}
 	

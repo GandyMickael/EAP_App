@@ -32,5 +32,6 @@
             </Menu>
          </menus>
       </MenuBar>
+      <Text fx:id="message" layoutX="195.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="209.13671875" />
    </children>
 </AnchorPane>
