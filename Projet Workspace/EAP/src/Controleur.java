@@ -348,7 +348,14 @@ public class Controleur implements Initializable {
    	    String nom = FieldNomEnt.getText();
    	    String adr = fieldAdr.getText();
    	    String mail = fieldMail.getText();
-   	    int tel = Integer.parseInt(fieldTel.getText());
+   	    int tel=0;
+   	    if(fieldTel.getText().equals("")) {
+   	    	message.setFill(Color.FIREBRICK);//Couleur du message
+    		message.setText("Le numéro de téléphone saisie est vide.");
+   	    }else {
+   	     tel = Integer.parseInt(fieldTel.getText());
+   	    }
+   	   
    	    String testTel = String.valueOf(tel);
    	    System.out.println(testTel.length());
    	    if( testTel.length() == 9 && Pattern.matches("^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@[a-z0-9-]+(\\.[a-z0-9-]+)+$", mail)) {
@@ -367,30 +374,37 @@ public class Controleur implements Initializable {
    	    }
    	    else {
 	    		message.setFill(Color.FIREBRICK);//Couleur du message
-	    		message.setText("Le numéro de téléphone n'est pas valide");
+	    		message.setText("Le numéro de téléphone ou l'adresse mail n'est pas valide");
    	    }
    	}
    	
    	// TODO Auto-generated method stub
    	public  void ajoutSalle() {
-   		String nomSalle = boxtypeSalle.getValue()+" "+fieldNomSalle.getText();
-   		Salle uneSalle = null;
-   		if(nomSalle.contains("Bureau")){
-   			 uneSalle = new Bureaux(nomSalle);
-   		}
-   		else {
-   			 uneSalle = new Salle_de_reunion(nomSalle);
-   		}
-   		Salle testSalle = Modele.getSalle(nomSalle);
-   		if(testSalle!=null) {
+   		if(fieldNomSalle.getText().equals("")) {
    			message.setFill(Color.FIREBRICK);//Couleur du message
-   			message.setText("La salle sélectionné existe déjà.");
+   			message.setText("Veuillez sélectionner le numéro de la salle.");
    			
    		}
    		else {
-   			message.setFill(Color.GREEN);//Couleur du message
-   			message.setText("Salle enregistrée");
-   			Modele.addSalle(uneSalle);
+	   		String nomSalle = boxtypeSalle.getValue()+" "+fieldNomSalle.getText();
+	   		Salle uneSalle = null;
+	   		if(nomSalle.contains("Bureau")){
+	   			 uneSalle = new Bureaux(nomSalle);
+	   		}
+	   		else {
+	   			 uneSalle = new Salle_de_reunion(nomSalle);
+	   		}
+	   		Salle testSalle = Modele.getSalle(nomSalle);
+	   		if(testSalle!=null) {
+	   			message.setFill(Color.FIREBRICK);//Couleur du message
+	   			message.setText("La salle sélectionné existe déjà.");
+	   			
+	   		}
+	   		else {
+	   			message.setFill(Color.GREEN);//Couleur du message
+	   			message.setText("Salle enregistrée");
+	   			Modele.addSalle(uneSalle);
+	   		}
    		}
    	}
    	
